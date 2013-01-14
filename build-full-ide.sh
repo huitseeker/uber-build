@@ -212,7 +212,7 @@ SCALAIDE_DIR=scala-ide
 SCALARIFORM_DIR=scalariform
 SCALA_REFACTORING_DIR=scala-refactoring
 SBINARY_DIR=sbinary
-SBT_DIR=xsbt
+SBT_DIR=sbt
 WORKSHEET_DIR=worksheet-plugin
 TYPESAFE_IDE_DIR=typesafe-ide
 KEYSTORE_FOLDER=typesafe-keystore
@@ -255,7 +255,7 @@ function build_sbinary()
     cd ${BASE_DIR}
 }
 
-function build_xsbt()
+function build_sbt()
 {
     # build sbt
     print_step "Building Sbt"
@@ -713,7 +713,7 @@ then
 fi
 
 build_sbinary
-build_xsbt
+build_sbt
 build_toolchain
 build_refactoring
 build_scalariform
