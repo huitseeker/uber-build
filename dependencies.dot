@@ -1,0 +1,35 @@
+digraph scala-ide-dependencies {
+  sbinary -> stock sbt;
+  stock sbt -> scala-eclipse-toolchain [label = "robust, latest"];
+  scala-eclipse-toolchain -> scalariform;
+  scala-eclipse-toolchain -> scala-refactoring;
+  scala-eclipse-toolchain -> scalac-memory-leaks-test;
+  scala-refactoring -> scala-ide
+  scalariform -> scala-ide;
+  scala-ide -> play2-plugin;
+  scala-ide -> sbtconsole;
+  scala-ide -> scala-search;
+  scala-ide -> scala-worksheet;
+  scala-ide -> insynth;
+  scalastyle -> scalastyle plugin;
+  scala-ide -> ecosystem-all
+
+  subgraph ecosystems {
+    scala-ide -> ecosystem-all;
+    scalastyle -> ecosystem-all [label = "for completion"];
+    scala-worksheet -> ecosystem-all [label = "for completion"];
+    ecosystem-all -> ecosystem-merge-bases;
+  }
+
+  subgraph nightlies {
+    $eclipse.version-$scala.version-eco-nightly -> flow-ecosystem;
+    flow-ecosystem -> nightly-eco-build;
+  }
+
+}
+// scala-eclipse-toolchain pick up the last successful build of stock sbt
+// ecosystem-merge-bases is the back-merging job for ecosystem-all
+
+// flow-ecosystem sequences with a build flow job the
+// construction of the 4 ecosystem flavors, and their publicaiton
+// using nightly-eco-build.
