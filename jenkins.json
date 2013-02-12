@@ -1,0 +1,76 @@
+{
+    {"name" : "ecosystem-all",
+     "comment" : "publishes site hierarchy"
+    },
+    { "name" : "ecosystem-merge-bases",
+      "comment" : "publishes base hierarchy"
+    },
+    { "name" : "flow-eco-nightly",
+      "dependencies" : "nightly-eco-build",
+      "comment" : "sequences nightly-eco-build after nightly builds"
+    },
+    {"name" : "indigo-2.10.0-eco-nightly",
+     "dependencies" : {
+         "scala" : "2.10.0",
+         "eclipse" : "3.7",
+     }
+    },
+    {"name" : "indigo-2.9-eco-nightly",
+     "dependencies" : {
+         "scala" : "2.9.3-SNAPSHOT",
+         "eclipse" : "3.7",
+     }
+    },
+    {"name" : "juno-2.9-eco-nightly",
+     "dependencies" : {
+         "scala" : "2.9.3-SNAPSHOT",
+         "eclipse" : "3.8",
+     }
+    },
+    {"name" : "juno-2.10.0-eco-nightly",
+     "dependencies" : {
+         "scala" : "2.10.0",
+         "eclipse" : "3.8",
+     }
+     "provides" : "scala-ide"
+    },
+    {"name" : "nightly-eco-build",
+      "dependencies" : {
+          "ecosystem" : ["indigo-2.10.0-nightly", "indigo-2.9-nightly", "juno-2.9-nightly", "juno-2.10.0-nightly"]
+      },
+     "provides" : ["scalatest", "scala-worksheet"]
+    },
+    {"name" : "insynth-2.1.x-2.10.0",
+     "dependencies" : {
+         "scala" : "2.10.0-SNAPSHOT",
+         "scala-ide" : "nightly-master"
+     }
+    },
+    {"name" : "insynth-2.1.x-2.9",
+     "dependencies" : {
+         "scala" : "2.9.3-SNAPSHOT",
+         "scala-ide" : "nightly-master"
+     }
+    },
+    {"name" : "play2-plugin-nightly-2.1-2.9",
+     "dependencies" : {
+         "scala" : "2.9.3-SNAPSHOT",
+         "eclipse" : "3.7",
+         "scala-ide" : "nightly-master"
+     }
+    },
+    {"name" : "play2-plugin-nightly-2.1-indigo-2.10",
+     "dependencies" : {
+         "scala" : "2.10.0-SNAPSHOT",
+         "eclipse" : "3.7",
+         "scala-ide" : "nightly-master"
+     }
+    },
+    {"name" : "play2-plugin-nightly-2.1-juno-2.10",
+     "dependencies" : {
+         "scala" : "2.10.0-SNAPSHOT",
+         "eclipse" : "3.8",
+         "scala-ide" : "nightly-master"
+     }
+    }
+}
