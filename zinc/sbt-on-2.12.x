@@ -109,7 +109,9 @@
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#"${vars.sbt-republish-tag},
         set-version: ${vars.sbt-version}
-        extra.sbt-version: "0.13.5"
+      }, {
+        name:   "zinc",
+        uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc-tag}
       }
     ],
     cross-version:standard,
@@ -122,6 +124,24 @@
         projects:["sbt-republish"]
       }
     ]
+    notifications: {
+      send:[{
+        projects: "."
+        send.to: "qbranch@typesafe.com"
+        when: bad
+      },{
+        projects: "."
+        kind: console
+        when: always
+      }]
+      default.send: {
+        from: "jenkins-dbuild <antonio.cunei@typesafe.com>"
+        smtp:{
+          server: "psemail.epfl.ch"
+          encryption: none
+        }
+      }
+    }
   }
   options.resolvers: ${?vars.resolvers}
 }
